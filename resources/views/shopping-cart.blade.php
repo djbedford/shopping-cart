@@ -67,18 +67,12 @@
         <div class="flex-center position-ref full-height">
             <div class="content">
                 <div class="title m-b-md">
-                    Products
+                    Shopping Cart
                 </div>
-                <div>
-                    @foreach($products as $product)
-                        <p>{{ $product['name'] }}</p>
-                        <p>{{ $product['price'] }}</p>
-                        <form action="/shopping-cart/{{ strtolower($product['name']) }}" method="post">
-                            @csrf
-                            <button type="submit">Add To Cart</button>
-                        </form>
-                    @endforeach
-                </div>
+                @foreach($cart as $item)
+                    <p>{{ $item['name'] }}</p>
+                    <p>{{ $item['price'] }}</p>
+                @endforeach
             </div>
         </div>
     </body>
