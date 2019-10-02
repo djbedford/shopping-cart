@@ -1,0 +1,27 @@
+version: '3.7'
+
+networks:
+    app-tier:
+        driver: bridge
+
+services:
+    app:
+        build:
+            context: .
+            dockerfile: .docker/php/Dockerfile
+        networks:
+            - app-tier
+        ports:
+            - 9002:9000
+        volumes:
+            - .:/var/www/html
+    nginx:
+        build:
+            context: .
+            dockerfile: .docker/nginx/Dockerfile
+        networks:
+            - app-tier
+        ports:
+            - 8080:80
+        volumes:
+            - ./public:/var/www/html/public
