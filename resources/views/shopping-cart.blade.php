@@ -72,6 +72,12 @@
                 @foreach($cart as $item)
                     <p>{{ $item['name'] }}</p>
                     <p>{{ $item['price'] }}</p>
+                    <p>{{ $item['quantity'] }}</p>
+                    <form action="/shopping-cart/{{ strtolower($item['name']) }}" method="post">
+                        @method('DELETE')
+                        @csrf
+                        <button type="submit">Remove Product</button>
+                    </form>
                 @endforeach
             </div>
         </div>

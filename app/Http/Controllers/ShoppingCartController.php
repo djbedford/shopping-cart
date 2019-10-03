@@ -26,10 +26,17 @@ class ShoppingCartController
 
     public function store($productName)
     {
-        $product = Product::where('name', '=', ucfirst($productName))->get();
+        $product = Product::where('name', '=', ucfirst($productName))->get()->first();
 
         $this->shoppingCartService->addProduct($product);
 
         return redirect('/products');
+    }
+
+    public function destroy($productName)
+    {
+        $this->shoppingCartService->removeProduct();
+
+        return redirect('/shopping-cart');
     }
 }

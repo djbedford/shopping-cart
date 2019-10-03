@@ -6,7 +6,14 @@ class ShoppingCartService
 {
     public function addProduct($product)
     {
-        session(['shopping-cart' => json_encode($product)]);
+        $productData = [
+            [
+                'name' => $product['name'],
+                'price' => $product['price'],
+                'quantity' => 1,
+            ]
+        ];
+        session(['shopping-cart' => json_encode($productData)]);
     }
 
     public function getCart()
@@ -14,5 +21,10 @@ class ShoppingCartService
         $shoppingCart = session('shopping-cart');
 
         return json_decode($shoppingCart, true);
+    }
+
+    public function removeProduct()
+    {
+        session()->forget('shopping-cart');
     }
 }
