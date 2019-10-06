@@ -69,16 +69,20 @@
                 <div class="title m-b-md">
                     Shopping Cart
                 </div>
-                @foreach($cart as $item)
-                    <p>{{ $item['name'] }}</p>
-                    <p>{{ $item['price'] }}</p>
-                    <p>{{ $item['quantity'] }}</p>
-                    <form action="/shopping-cart/{{ strtolower($item['name']) }}" method="post">
+                @foreach($cart as $product => $details)
+                    <p>{{ $product }}</p>
+                    <p>{{ $details['price'] }}</p>
+                    <p>{{ $details['quantity'] }}</p>
+                    <p>{{ $details['total'] }}</p>
+                    <form action="/shopping-cart/{{ strtolower($product) }}" method="post">
                         @method('DELETE')
                         @csrf
                         <button type="submit">Remove Product</button>
                     </form>
                 @endforeach
+                <div>
+                    <p>{{ $cartTotal }}</p>
+                </div>
             </div>
         </div>
     </body>

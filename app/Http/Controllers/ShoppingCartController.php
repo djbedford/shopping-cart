@@ -20,8 +20,9 @@ class ShoppingCartController
     public function index()
     {
         $shoppingCart = $this->shoppingCartService->getCart();
+        $shoppingCartTotal = $this->shoppingCartService->getCartTotal($shoppingCart);
 
-        return view('shopping-cart', ['cart' => $shoppingCart]);
+        return view('shopping-cart', ['cart' => $shoppingCart, 'cartTotal' => $shoppingCartTotal]);
     }
 
     public function store($productName)
@@ -35,7 +36,7 @@ class ShoppingCartController
 
     public function destroy($productName)
     {
-        $this->shoppingCartService->removeProduct();
+        $this->shoppingCartService->removeProduct(ucfirst($productName));
 
         return redirect('/shopping-cart');
     }

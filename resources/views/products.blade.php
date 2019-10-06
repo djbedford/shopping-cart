@@ -72,7 +72,7 @@
                 <div>
                     @foreach($products as $product)
                         <p>{{ $product['name'] }}</p>
-                        <p>{{ $product['price'] }}</p>
+                        <p>{{ number_format($product['price'], 2) }}</p>
                         <form action="/shopping-cart/{{ strtolower($product['name']) }}" method="post">
                             @csrf
                             <button type="submit">Add To Cart</button>
