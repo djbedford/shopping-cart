@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Product;
 
-class ProductController extends Controller
+class ProductController
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of all the available products.
      *
      * @return \Illuminate\Http\Response
      */
