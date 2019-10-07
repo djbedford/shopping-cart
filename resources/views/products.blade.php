@@ -70,9 +70,12 @@
                     Products
                 </div>
                 <div>
+                    <button><a href="/shopping-cart">View Cart</a></button>
+                </div>
+                <div>
                     @foreach($products as $product)
-                        <p>{{ $product['name'] }}</p>
-                        <p>{{ number_format($product['price'], 2) }}</p>
+                        <p>Name: {{ $product['name'] }}</p>
+                        <p>Price: {{ number_format($product['price'], 2) }}</p>
                         <form action="/shopping-cart/{{ strtolower($product['name']) }}" method="post">
                             @csrf
                             <button type="submit">Add To Cart</button>

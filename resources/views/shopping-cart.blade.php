@@ -69,20 +69,33 @@
                 <div class="title m-b-md">
                     Shopping Cart
                 </div>
-                @foreach($cart as $product => $details)
-                    <p>{{ $product }}</p>
-                    <p>{{ $details['price'] }}</p>
-                    <p>{{ $details['quantity'] }}</p>
-                    <p>{{ $details['total'] }}</p>
-                    <form action="/shopping-cart/{{ strtolower($product) }}" method="post">
-                        @method('DELETE')
-                        @csrf
-                        <button type="submit">Remove Product</button>
-                    </form>
-                @endforeach
-                <div>
-                    <p>{{ $cartTotal }}</p>
-                </div>
+                @if(!empty($cart))
+                    <div>
+                        <p>
+                            Click here to
+                            <a href="/products">continue shopping</a>
+                        </p>
+                    </div>
+                    @foreach($cart as $product => $details)
+                        <p>Name: {{ $product }}</p>
+                        <p>Price: {{ $details['price'] }}</p>
+                        <p>Quantity: {{ $details['quantity'] }}</p>
+                        <p>Total: {{ $details['total'] }}</p>
+                        <form action="/shopping-cart/{{ strtolower($product) }}" method="post">
+                            @method('DELETE')
+                            @csrf
+                            <button type="submit">Remove Product</button>
+                        </form>
+                    @endforeach
+                    <div>
+                        <p>Cart Total: {{ $cartTotal }}</p>
+                    </div>
+                @else
+                    <p>
+                        You have no items in your cart.
+                        Return to the <a href="/products">products page</a>
+                    </p>
+                @endif
             </div>
         </div>
     </body>
