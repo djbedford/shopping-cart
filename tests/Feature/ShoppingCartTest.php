@@ -17,14 +17,4 @@ class ShoppingCartTest extends TestCase
             ->assertStatus(JsonResponse::HTTP_FOUND)
             ->assertSessionHas('shopping-cart');
     }
-
-    /** @test */
-    public function it_can_delete_products()
-    {
-        $response = $this->json('DELETE', '/shopping-cart/sledgehammer');
-
-        $response
-            ->assertStatus(JsonResponse::HTTP_FOUND)
-            ->assertSessionMissing('shopping-cart');
-    }
 }
