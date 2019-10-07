@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Product;
 use App\Services\ShoppingCartService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -48,12 +49,12 @@ class ShoppingCartTest extends TestCase
     /** @test */
     public function it_can_add_a_product()
     {
-        $product = [
+        $product = factory(Product::class)->make([
             'name' => 'Axe',
             'price' => 190.50,
             'quantity' => 1,
             'total' => 190.50,
-        ];
+        ]);
 
         $shoppingCartService = new ShoppingCartService;
         $shoppingCartService->addProduct($product);
@@ -66,12 +67,12 @@ class ShoppingCartTest extends TestCase
     /** @test */
     public function it_can_remove_a_product()
     {
-        $product = [
+        $product = factory(Product::class)->make([
             'name' => 'Axe',
             'price' => 125.75,
             'quantity' => 1,
             'total' => 125.75,
-        ];
+        ]);
 
         $shoppingCartService = new ShoppingCartService;
         $shoppingCartService->addProduct($product);
@@ -85,19 +86,19 @@ class ShoppingCartTest extends TestCase
     /** @test */
     public function it_can_store_multiple_products()
     {
-        $product1 = [
+        $product1 = factory(Product::class)->make([
             'name' => 'Axe',
             'price' => 190.50,
             'quantity' => 1,
             'total' => 190.50,
-        ];
+        ]);
 
-        $product2 = [
+        $product2 = factory(Product::class)->make([
             'name' => 'Sledgehammer',
             'price' => 125.75,
             'quantity' => 1,
             'total' => 125.75,
-        ];
+        ]);
 
         $shoppingCartService = new ShoppingCartService;
         $shoppingCartService->addProduct($product1);
